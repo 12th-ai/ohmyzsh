@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: aliceblue;
+  color: black;
+  font-family: sans-serif;
+}
+body form {
+  margin: 6% auto;
+  border: 2px solid coral;
+  width: 30%;
+  padding: 20px;
+  line-height: 2;
+  text-transform: capitalize;
+  border-radius: 10px;
+}
+body form h1 {
+  margin-top: -10px;
+  text-align: center;
+  margin-bottom: -5px;
+  font-size: 20px;
+}
+body form input, body form select {
+  padding: 10px;
+  width: 90%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  text-transform: capitalize;
+  text-align: justify;
+  font-style: italic;
+}
+body form select {
+  width: 95%;
+}
+body form button {
+  padding: 10px;
+  width: 95%;
+  border: none;
+  margin-top: 20px;
+  border-radius: 5px;
+  outline: none;
+  background-color: coral;
+}
+
+#login_form {
+  margin-top: 13%;
+}
+
+.main-dash {
+  border: 2px solid red;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+.main-dash .left-side {
+  border: 2px solid green;
+  width: 20%;
+  height: 100%;
+}
+.main-dash .left-side .logo {
+  padding: 10px;
+  line-height: 1.8;
+  text-align: center;
+}
+.main-dash .left-side .logo h1 {
+  font-size: 25px;
+}
+.main-dash .left-side .routers {
+  line-height: 3;
+  padding: 10px;
+}
+.main-dash .left-side .routers a {
+  display: flex;
+  text-decoration: none;
+  color: black;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+.main-dash .left-side .logout {
+  margin-top: 80%;
+}
+.main-dash .left-side .logout a {
+  padding-left: 10px;
+  color: chocolate;
+  text-decoration: none;
+  font-size: 18px;
+}
+.main-dash .right-side {
+  border: 2px solid orange;
+  width: 80%;
+  height: 100%;
+  display: block;
+}
+.main-dash .right-side .top-nav {
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  position: sticky;
+  width: 100%;
+  top: 0;
+}
+.main-dash .right-side .top-nav h1 {
+  font-size: 25px;
+}
+
+.main-table {
+  margin: 10% auto;
+  width: 50%;
+  text-align: center;
+}
+.main-table .title {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.main-table .title h1 {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.main-table .title a {
+  text-decoration: none;
+  text-transform: capitalize;
+  color: coral;
+  position: absolute;
+  top: 120px;
+  left: 300px;
+}
+.main-table table {
+  border: 2px solid black;
+  border-collapse: collapse;
+  border: none;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+.main-table table th {
+  padding-bottom: 10px;
+  border-bottom: 2px solid gray;
+  margin-bottom: 10px;
+}
+.main-table table td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid gray;
+}
+.main-table table a {
+  background-color: crimson;
+  padding: 6px;
+  border: none;
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 13px;
+  display: flex;
+  width: 100px;
+  justify-content: center;
+  margin: 2px;
+  border-radius: 2px;
+}/*# sourceMappingURL=app.css.map */

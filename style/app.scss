@@ -1,0 +1,203 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: aliceblue;
+    color: black;
+    // overflow: hidden;
+    font-family: sans-serif;
+
+    form{
+        margin:6% auto;
+        
+        border: 2px solid coral;
+        width:30%;
+        padding: 20px;
+        line-height:2;
+        text-transform: capitalize;
+        border-radius: 10px;
+
+        h1{
+            // margin-bottom:px;
+            margin-top: -10px;
+            text-align: center;
+            margin-bottom: -5px;
+            font-size: 20px;
+        }
+
+        input,select{
+            padding:10px;
+            width: 90%;
+            // margin-top: 10px;
+            border: 1px solid gray;
+            border-radius:5px;
+            outline: none;
+
+         color: black;
+         text-transform: capitalize;
+         text-align: justify;
+         font-style: italic;
+        }
+        select{
+            width: 95%;
+
+        }
+        button{
+            padding:10px;
+            width: 95%;
+            // margin-top: 10px;
+            // border: 1px solid gray;
+            border: none;
+            margin-top:20px;
+            border-radius:5px;
+            outline: none;
+            background-color:coral;
+        
+        }
+     
+       
+
+        
+    }
+}
+
+#login_form{
+    margin-top:13%;
+}
+
+.main-dash{
+    border: 2px solid red;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .left-side{
+        border: 2px solid green;
+        width: 20%;
+        height:100%;
+
+        .logo{
+            // border: 2px solid red;
+            padding: 10px;
+            line-height: 1.8;
+            text-align: center;
+            h1{
+              font-size: 25px;
+
+            }
+        }
+        .routers{
+            line-height: 3;
+            padding:10px;
+          
+            a{
+                display: flex;
+                // border: 2px solid red;
+                text-decoration: none;
+                color: black;
+                text-transform: capitalize;
+                font-size: 18px;
+
+            }
+            // border: 2px solid green;
+        }
+        .logout{
+            margin-top:80%;
+          a{
+            padding-left: 10px;
+            color: chocolate;
+            text-decoration: none;
+            font-size: 18px;
+          }
+        }
+    }
+    .right-side{
+        border: 2px solid orange;
+        width: 80%;
+        height:100%;
+        display: block;
+
+        .top-nav{
+            border:2px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            position: sticky;
+            width: 100%;
+            top: 0;
+
+            h1{
+                font-size: 25px;
+            }
+        }
+    }
+}
+
+.main-table{
+// border: 2px solid green;
+
+.title{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 10px;
+    h1{
+        font-size:20px;
+        text-transform: capitalize;
+    }
+    a{
+        text-decoration: none;
+        text-transform: capitalize;
+        color: coral;
+        position: absolute;
+        top: 120px;
+        left:300px;
+    }
+}
+
+    margin:10% auto;
+    width:50%;
+    text-align: center;
+    table{
+        border: 2px solid black;
+        border-collapse: collapse;
+        border: none;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    
+        text-transform: capitalize;
+        th{
+            padding-bottom: 10px;
+            border-bottom: 2px solid gray;
+            margin-bottom: 10px;
+            
+        }
+        td{
+        padding-top: 10px;
+        padding-bottom:10px;
+        border-bottom: 2px solid gray;
+        }
+        a{
+            background-color: crimson;
+            padding:6px;
+            border: none;
+            text-decoration: none;
+            color: whitesmoke;
+            font-size: 13px;
+            display: flex;
+            width:100px; 
+            justify-content: center;
+            margin: 2px;
+            border-radius: 2px;
+            
+
+        }
+    }
+}

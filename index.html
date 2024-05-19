@@ -1,0 +1,495 @@
+<img src="./dashboard/trade/add_trade.php" alt="">
+
+<form action="" method="POST">
+    <h1>add trade  </h1>
+        <label for="">name:</label> <br>
+        <input type="text" name="name" placeholder="plaese enter your name" id=""> <br>
+      <button type="submit" name="submit"> add trade </button>
+ 
+
+    </form>
+</body>
+</html>
+
+<?php
+
+
+$con= mysqli_connect('localhost','root','','trainne_ass_management');
+
+
+
+if(isset($_POST['submit'])){
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $privillage = $_POST['privillage'];
+    $password = $_POST['password'];
+
+
+    $checkuser = mysqli_query($con, "SELECT * FROM users WHERE user_name = '$name' AND `password` = '$password'");
+
+    if(mysqli_num_rows($checkuser) > 0){
+        echo '<script>
+        alert("user already exist");
+          setTimeout(() => {
+            window.location.replace("./sign_up.php");
+          }, 2000);
+        </script>';
+    }
+    else{
+        
+         $insert = mysqli_query($con, "INSERT INTO users VALUES (null,'$name','$email','$privillage','$password')");
+
+         if($insert){
+            echo '<script>
+          alert("inserted successfully");
+            setTimeout(() => {
+              window.location.replace("./login.php");
+            }, 2000);
+          </script>';
+         }
+         else{
+     die(mysqli_error($con));
+         }
+    }
+     
+
+}
+
+
+?>
+
+
+
+
+<!-- login page    -->
+
+<?php
+
+session_start();
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/app.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="" method="POST" id='login_form' > 
+    <h1>sign up </h1>
+    <label for="">name:</label> <br>
+        <input type="text" name="name" placeholder="plaese enter your name" id=""> <br>
+       
+        <label for="">password:</label> <br>
+        <input type="password" name="password" placeholder="plaese enter your password" id=""> <br>
+       
+      <button type="submit" name="login"> login </button>
+      <p>don't you have account <a href="./sign_up.php">sign up</a></p>
+    </form>
+</body>
+</html>
+
+<?php
+
+
+$con= mysqli_connect('localhost','root','','trainne_ass_management');
+
+
+if(isset($_POST['login'])){
+
+    $name = $_POST['name'];
+ 
+    $password = $_POST['password'];
+
+
+    $checkuser = mysqli_query($con, "SELECT * FROM users WHERE user_name = '$name' AND `password` = '$password'");
+
+    if(mysqli_num_rows($checkuser) > 0){
+
+        $fetchUser = mysqli_fetch_array($checkuser);
+     
+        $_SESSION['userLog'] = $fetchUser['user_id'];
+        $_SESSION['userLogpassword']= $fetchUser['password'];
+        $_SESSION['userLogName'] = $fetchUser['user_name'];
+        $_SESSION['userLogLvl'] = $fetchUser['privilege'];
+
+        echo '<script>
+        alert("login successfully");
+          setTimeout(() => {
+            window.location.replace("./dashboard.php");
+          }, 2000);
+        </script>';
+    }
+    else{
+        echo '<script>
+        alert("login failed");
+          setTimeout(() => {
+            window.location.replace("./login.php");
+          }, 2000);
+        </script>';
+    }
+}
+
+
+?>
+
+
+
+<!-- sign up  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/app.css">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <form action="" method="POST">
+    <h1>create account  </h1>
+        <label for="">name:</label> <br>
+        <input type="text" name="name" placeholder="plaese enter your name" id=""> <br>
+        <label for="">email:</label> <br>
+        <input type="email" name="email" placeholder="plaese enter your email" id=""> <br>
+        <label for="">password:</label> <br>
+        <input type="password" name="password" placeholder="plaese enter your password" id=""> <br>
+        <label for="">privillage:</label> <br>
+      <select name="privillage" id="">
+        <option value="0">manager</option>
+        <option value="1">secretary</option>
+        <option value="2`">student</option>
+        <option value="3">teacher</option>
+      </select> <br>
+
+      <button type="submit" name="submit"> sign up </button>
+      <p>do you have account <a href="./login.php">login</a></p>
+
+    </form>
+</body>
+</html>
+
+<?php
+
+
+$con= mysqli_connect('localhost','root','','trainne_ass_management');
+
+
+
+if(isset($_POST['submit'])){
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $privillage = $_POST['privillage'];
+    $password = $_POST['password'];
+
+
+    $checkuser = mysqli_query($con, "SELECT * FROM users WHERE user_name = '$name' AND `password` = '$password'");
+
+    if(mysqli_num_rows($checkuser) > 0){
+        echo '<script>
+        alert("user already exist");
+          setTimeout(() => {
+            window.location.replace("./sign_up.php");
+          }, 2000);
+        </script>';
+    }
+    else{
+        
+         $insert = mysqli_query($con, "INSERT INTO users VALUES (null,'$name','$email','$privillage','$password')");
+
+         if($insert){
+            echo '<script>
+          alert("inserted successfully");
+            setTimeout(() => {
+              window.location.replace("./login.php");
+            }, 2000);
+          </script>';
+         }
+         else{
+     die(mysqli_error($con));
+         }
+    }
+     
+
+}
+
+
+?>
+
+
+
+
+<?php 
+  session_start();
+  // $con = mysqli_connect('localhost', 'root', '', 'stock_management');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/app.css">
+ 
+    <title>Document</title>
+
+
+</head>
+<body>
+
+            <form action="" method="POST" id="login_form">
+    <h1>add trade  </h1>
+        <label for="">name:</label> <br>
+        <input type="text" name="name" placeholder="plaese enter your name" id=""> <br>
+      <button type="submit" name="submit"> add trade </button>
+ 
+
+    </form>
+          
+     
+       
+     
+
+
+</body>
+</html>
+
+<?php 
+$con= mysqli_connect('localhost','root','','trainne_ass_management');
+
+
+
+if(isset($_POST['submit'])){
+
+    $name = $_POST['name'];
+  
+
+
+    $checkuser = mysqli_query($con, "SELECT * FROM trade WHERE trade_name = '$name'");
+
+    if(mysqli_num_rows($checkuser) > 0){
+        echo '<script>
+        alert("trade already exist");
+          setTimeout(() => {
+            window.location.replace("./add_trade.php");
+          }, 2000);
+        </script>';
+    }
+    else{
+        
+         $insert = mysqli_query($con, "INSERT INTO trade VALUES (null,'$name')");
+
+         if($insert){
+            echo '<script>
+          alert(" trade inserted successfully");
+            setTimeout(() => {
+              window.location.replace("trade.php");
+            }, 2000);
+          </script>';
+         }
+         else{
+     die(mysqli_error($con));
+         }
+    }
+     
+
+}
+
+
+?>
+
+
+
+
+<?php 
+  session_start();
+  // $con = mysqli_connect('localhost', 'root', '', 'stock_management');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/app.css">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <div class="main-dash">
+
+        <div class="left-side">
+                <div class="logo">
+                     <h1>lavinia</h1>
+                     <p>school management</p>
+                 </div>
+            <div class="routers">
+                <a href="">home</a>
+                <a href="">trades</a>
+                <a href="">trainnes</a>
+                <a href="">modules</a>
+                <a href="">marks</a>
+            </div>
+               <div class="logout">
+                 <p><a href="./logout.php">logout</a></p>
+  
+                </div>
+        </div>
+
+
+        <div class="right-side">
+    
+            <div class="top-nav">
+                <?php include './topnav.php' ?>
+             
+            </div>
+
+          
+     
+        </div>
+     
+</div>
+
+</body>
+
+
+
+<?php 
+  session_start();
+  // $con = mysqli_connect('localhost', 'root', '', 'stock_management');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/app.css">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <div class="main-dash">
+
+        <div class="left-side">
+                <div class="logo">
+                     <h1>lavinia</h1>
+                     <p>school management</p>
+                 </div>
+            <div class="routers">
+                <a href="">home</a>
+                <a href="">trades</a>
+                <a href="">trainnes</a>
+                <a href="">modules</a>
+                <a href="">marks</a>
+            </div>
+               <div class="logout">
+                 <p><a href="./logout.php">logout</a></p>
+  
+                </div>
+        </div>
+
+
+        <div class="right-side">
+    
+            <div class="top-nav">
+                <?php include './topnav.php' ?>
+             
+            </div>
+
+            <div class="main-table">
+                <div class="title">
+                <a href="./add_trade.php">add trade</a>
+           <h1>trade </h1>
+                </div>
+            
+            <table >
+                <thead>
+                    <th>trade id</th>
+                    <th>trade name</th>
+                    <th>action</th>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td  style="width:120px">1</td>
+                        <td  style="width:220px">2</td>
+                        <td style="display:flex;width:220px;padding:10px">
+                             <a href="">update</a>
+                            <a href="delete">delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+          
+     
+        </div>
+     
+</div>
+
+</body>
+</html>
+
+
+<?php
+
+    session_destroy();
+    echo '<script>
+    alert("you are logged out ");
+      setTimeout(() => {
+        window.location.replace("./login.php ");
+      }, 2000);
+    </script>';
+  
+
+?>
+<?php
+$con= mysqli_connect('localhost','root','','trainne_ass_management');
+
+
+?>
+
+
+<?php
+ // Setting Title of the logged in user based on their user level
+ $sessionLvl = $_SESSION['userLogprivillage'];
+ if($sessionLvl == 1) {
+   $title = 'Receptionist';
+ } else if($sessionLvl == 2) {
+   $title = 'Buyer';
+ } else if($sessionLvl == 3) {
+   $title = 'Acc. Payable Off.';
+ } else {
+   $title = 'Admin';
+ }
+ 
+?>
+
+<?php 
+    if(!isset($_SESSION['userLogName'])) {
+      echo '<script>
+        Swal.fire({
+          title: "Unauthorized Access!",
+          text: "Please Login First!, Logging Out...",
+          icon: "error",
+        })
+        setTimeout(() => {
+          window.location.replace("../index.php");
+        }, 3000);
+      </script>';
+      return 0;
+    }
+  ?>
+
+
+    <h1>lavinia</h1>
+
+
+  Welcome, <?php echo $title ?> <?php echo $_SESSION['userLogName'] ?>
