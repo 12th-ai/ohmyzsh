@@ -1,3 +1,23 @@
+<?php
+session_start();
+$con = mysqli_connect("localhost", "root", "", "practice1");
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, <?php echo $_SESSION['logname']; ?></h1>
+    <a href="logout.php">Logout</a>
+</body>
+</html>
+
 <img src="./dashboard/trade/add_trade.php" alt="">
 
 <form action="" method="POST">
@@ -493,3 +513,221 @@ $con= mysqli_connect('localhost','root','','trainne_ass_management');
 
 
   Welcome, <?php echo $title ?> <?php echo $_SESSION['userLogName'] ?>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        <h1> register </h1>
+
+        <label for="">user name </label> <br>
+        <input type="text" name="user_name" id=""> <br>
+        <label for="">user email</label> <br>
+        <input type="email" name="user_email" id=""> <br>
+    <label for="">privillage</label> <br>
+    <select name="privillage" id="">
+        <option value="o">admin</option>
+        <option value="1">secretary</option>
+    </select> <br>
+    <label for="">password</label> <br>
+    <input type="password" name="password" id=""> <br>
+    <input type="submit" name="submit" id="">
+    <button type="submit" name="submit"> add user  </button>
+    </form>
+</body>
+</html>
+
+<?php
+$con= mysqli_connect('localhost','root','','authentication');
+
+
+
+if(isset($_POST['submit'])){
+
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $privillage = $_POST['privillage'];
+    $password = $_POST['password'];
+
+
+    $checkuser = mysqli_query($con, "SELECT * FROM users WHERE user_name = '$user_name' AND `user_password` = '$password'");
+
+
+    if(mysqli_num_rows($checkuser) > 0){
+        echo '<script>
+        alert("user already exist");
+          setTimeout(() => {
+            window.location.replace("./sign_up.php");
+          }, 2000);
+        </script>';
+    }
+    else{
+        
+         $insert = mysqli_query($con, "INSERT INTO users VALUES (null,'$user_name','$user_email','$privillage','$password')");
+
+         if($insert){
+            echo '<script>
+          alert("inserted successfully");
+            setTimeout(() => {
+              window.location.replace("./login.php");
+            }, 2000);
+          </script>';
+         }  
+         else{
+     die(mysqli_error($con));
+         }
+    }
+
+}
+
+
+?>
+
+<?php
+session_start();
+
+// Database connection
+$con = mysqli_connect("localhost", "root", "", "practice1");
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
+if (isset($_GET['delete'])) {
+    $trade_id = $_GET['delete'];
+    $delete_trade = mysqli_query($con, "DELETE FROM trade WHERE trade_id = $trade_id");
+
+    if ($delete_trade) {
+        echo '<script>alert("Trade deleted successfully");</script>';
+    } else {
+        echo '<script>alert("Failed to delete trade");</script>';
+    }
+}
+
+// Search trade logic
+$search_query = "";
+if (isset($_POST['search'])) {
+    $search_query = $_POST['search_query'];
+}
+
+// Fetch trades
+$trades = mysqli_query($con, "SELECT * FROM trade WHERE trade_name LIKE '%$search_query%'");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Management</title>
+</head>
+<body>
+
+    <h1>Search Trade</h1>
+    <form action="" method="post">
+        <label for="search_query">Search by Trade Name</label> <br>
+        <input type="text" name="search_query" id="search_query" value="<?php echo htmlspecialchars($search_query); ?>"><br>
+        <button type="submit" name="search">Search</button>
+    </form>
+
+    <h1>Trade List</h1>
+    <a href="add_trade.php">Add New Trade</a>
+    <table border="1">
+        <tr>
+            <th>ID</th> 
+            <th>Trade Name</th>
+            <th>Actions</th>
+        </tr>
+        <?php
+        if (mysqli_num_rows($trades) > 0) {
+            while ($row = mysqli_fetch_assoc($trades)) {
+                echo "<tr>";
+                echo "<td>" . $row['trade_id'] . "</td>";
+                echo "<td>" . $row['trade_name'] . "</td>";
+                echo "<td>";
+                echo "<a href='update_trade.php?id=" . $row['trade_id'] . "'>Edit</a> | ";
+                echo "<a href='index.php?delete=" . $row['trade_id'] . "' onclick='return confirm(\"Are you sure you want to delete this trade?\")'>Delete</a>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='3'>No trades found</td></tr>";
+        }
+        ?>
+    </table>
+</body>
+</html>
+
+<?php
+// Close the database connection
+mysqli_close($con);
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>registaration form </h1>
+    <form method="post">
+        <label for="">user name</label> <br>
+        <input type="text" name="user_name" id="" placeholder="enter your user name"> <br>
+        <label for="">password</label> <br>
+        <input type="password" name="password" id="" placeholder="********"> <br>
+        <button type="submit" name="submit">submit</button>
+    </form>
+</body>
+</html>
+
+<?php
+
+$conn = mysqli_connect("localhost","root","","practice1");
+
+
+if(isset($_POST['submit'])){
+
+    $name = $_POST['user_name'];
+    $password = $_POST['password'];
+
+    $select = mysqli_query($conn,"SELECT * FROM users WHERE user_name = '$name'");
+
+    if(mysqli_num_rows($select)>0){
+
+        echo '<script>alert("user already exist")</script>';
+        
+    }
+    else{
+        $insert = mysqli_query($conn,"INSERT INTO users VALUES(null,'$name','$password')");
+
+        if($insert){
+            echo '<script>alert("user inserted sucessfully");
+            
+            setTimeout(()=>{
+
+                window.location.replace("./login.php");
+            })
+            </script>';
+ 
+        }
+        else{
+            die(mysqli_error($conn));
+        }
+    }
+}
+
+
+?>

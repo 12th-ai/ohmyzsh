@@ -1,0 +1,43 @@
+body{
+    background-color:aliceblue;
+    font-family: sans-serif;
+    text-transform: capitalize;
+}
+
+h1{
+    color: black;
+    text-align: center;
+    text-decoration: underline;
+
+}
+
+form{
+    border: 2px solid chocolate;
+
+    width:28%;
+    margin: auto;
+    padding: 15px;
+    line-height:1.7;
+    /* background-color: aqua; */
+    border-radius: 5px;
+}
+input{
+    width: 95%;
+    padding: 8px;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+button{
+padding: 10px;
+background-color: chocolate;
+color: white;
+font-size: 18px;
+border:none;
+width:50%;
+margin-top:10px;
+border-radius: 3px;
+margin:10px  auto;
+display: flex;
+justify-content: center;
+}
